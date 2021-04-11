@@ -1,26 +1,54 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Navbar />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Navbar from './components/Navbar';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Navbar
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&family=Montserrat:wght@400;500;700&display=swap');
+
+/* Variables*/
+:root {
+  /* Colors */
+  --bg: #ffffff;
+  --text: #232323;
+  --text-alt: #101010;
+  --primary-light: #00C8B0;
+  --primary-dark: #01A692;
+  --accent: #F42355;
+  --bg-dDark: #F2F2F2;
+  /* Fonts */
+  --main-font: 'Jost', sans-serif;
+  --alt-font: 'Montserrat', sans-serif;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--main-font);
+  background-color: var(--bg);
+}
+
+.navbar {
+  padding: 1rem 7vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text);
+  background-color: var(--primary-light);
+}
+
 </style>
