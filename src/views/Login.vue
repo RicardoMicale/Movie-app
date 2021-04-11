@@ -1,0 +1,3 @@
+<template>
+    <h1>Hello login</h1>
+</template>
