@@ -43,7 +43,7 @@ body {
 }
 
 .navbar {
-  padding: 1rem 7vw;
+  padding: .6rem 7vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
