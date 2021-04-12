@@ -243,6 +243,7 @@ form i {
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
+    flex: 2 2 20%;
     width: 100%;
     background-color: var(--bg-dDark);
     padding: 1rem 7vw;
@@ -262,7 +263,13 @@ form i {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 12vw;
+    width: 15vw;
+    margin-left: .2rem;
+    margin-right: .2rem;
+}
+
+.movie-card:hover img {
+    border-top: solid .4rem var(--accent);
 }
 
 img {
@@ -271,14 +278,15 @@ img {
 
 .movie-card div {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     background-color: var(--text);
     width: 100%;
+    height: 8rem;
     border-bottom-left-radius: .5rem;
     border-bottom-right-radius: .5rem;
-    padding: .2rem .5rem;
+    padding: .6rem .5rem;
 }
 
 p {
@@ -288,6 +296,7 @@ p {
 
 h5 {
     font-weight: 400;
+    margin-bottom: .7rem;
     color: var(--bg-dDark);
     opacity: .5;
 }
