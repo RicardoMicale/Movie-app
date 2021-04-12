@@ -5,7 +5,7 @@
                 <img src="../assets/Logo-movies.svg" alt="Info movies logo">
                 <h1>Movie Information</h1>
                 <div class="underline"></div>
-                <p>Mark movies as favourites and mark them as watched</p>
+                <p>Mark movies as favourites and track what you watch</p>
                 <div class="buttons">
                     <router-link class="button button-1" to="/login">Join Now</router-link>
                     <router-link class="button button-2" to="/search">Start exploring</router-link>
@@ -44,11 +44,12 @@ export default {
     display: flex;
     justify-content: space-between;
     position: relative;
-    height: 100vh;
+    height:calc(100% - 54.19px);
 }
 
 .left {
     padding: 7vw 0 0 7vw;
+    height: 100vh;
 }
 
 .tittle {
@@ -141,9 +142,11 @@ p {
 
 .right {
     position: relative;
+    height: 100vh;
 }
 
 .right img {
+    overflow-y: hidden;
     position: absolute;
     right: 0;
     top: 2rem;
