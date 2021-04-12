@@ -3,6 +3,7 @@ import Login from '../views/Login';
 import Home from '../views/Home';
 import Profile from '../views/Profile';
 import Search from '../views/Search';
+import Details from '../views/Details';
 
 const routes = [
     {
@@ -24,6 +25,11 @@ const routes = [
         path: '/profile',
         name: 'Profile',
         component: Profile
+    },
+    {
+        path: '/details/:id',
+        name: 'Details',
+        component: Details
     }
 ];
 
