@@ -45,6 +45,10 @@ export default {
     color: var(--text);
 }
 
+h2 {
+    font-family: var(--alt-font);
+}
+
 img {
     width: 1.6rem;
     height: auto;
