@@ -8,16 +8,35 @@
             <ul>
                 <li><router-link class="link" to="/">Home</router-link></li>
                 <li><router-link class="link" to="/search">Search</router-link></li>
-                <li><router-link class="link" to="/profile">Profile</router-link></li>
-                <li><router-link class="link" to="/login">Log in</router-link></li>
+                <li><router-link class="link" to="'/profile/' + currentUser">Profile</router-link></li>
+                <li><router-link class="link" to="/login" v-if="!isLoggedIn">Log in</router-link></li>
+                <li><button @click="logOut()" v-if="isLoggedIn">Log out</button></li>
             </ul>
         </nav>
     </header>
 </template>
 
 <script>
+import firebase from 'firebase'
+
 export default {
-    name: 'Navbar'
+    name: 'Navbar',
+    data() {
+        return {
+            isLoggedIn: false,
+        }
+    },
+    methods: {
+        logOut() {
+            firebase.auth().signOut().then(() => {
+                this.$router.push('/')
+            });
+            this.isLoggedIn = false;
+        },
+        logIn() {
+            this.isLoggedIn = true
+        }
+    }
 }
 </script>
 

@@ -22,7 +22,7 @@ const routes = [
         component: Search
     },
     {
-        path: '/profile',
+        path: '/profile/:id',
         name: 'Profile',
         component: Profile
     },
@@ -32,6 +32,7 @@ const routes = [
         component: Details
     }
 ];
+
 
 const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
