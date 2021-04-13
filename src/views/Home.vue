@@ -44,7 +44,7 @@ export default {
     display: flex;
     justify-content: space-between;
     position: relative;
-    height:calc(100% - 54.19px);
+    height: 100%;
 }
 
 .left {

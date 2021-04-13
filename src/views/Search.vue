@@ -17,7 +17,7 @@
             <router-link :to="'/details/' + movie.id" class="details-link">
                 <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path" :alt="movie.title">
                 <div>
-                    <h5>{{movie.release_date}}</h5>
+                    <h5>{{movie.release_date.slice(0,4)}}</h5>
                     <p>{{movie.title}}</p>
                 </div>
             </router-link>
