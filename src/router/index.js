@@ -4,6 +4,8 @@ import Home from '../views/Home';
 import Profile from '../views/Profile';
 import Search from '../views/Search';
 import Details from '../views/Details';
+import Favourites from '../views/Favourites';
+import Watched from '../views/Watched';
 
 const routes = [
     {
@@ -30,6 +32,16 @@ const routes = [
         path: '/details/:id',
         name: 'Details',
         component: Details
+    },
+    {
+        path: '/favourites/:id',
+        name: 'Favourites',
+        component: Favourites
+    },
+    {
+        path: '/watched/:id',
+        name: 'Watched',
+        component: Watched
     }
 ];
 

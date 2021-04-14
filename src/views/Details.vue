@@ -77,7 +77,6 @@ export default {
         
         await axios.get(CAST_URL)
           .then(response => {
-            console.log(response.data.cast.slice(0,6))
             return this.actors = response.data.cast.slice(0,6);
           }).catch(error => console.log(error));
 

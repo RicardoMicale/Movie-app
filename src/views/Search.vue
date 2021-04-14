@@ -118,7 +118,6 @@ export default {
                     })
                     .then(data => {
                         search.value = '';
-                        console.log(data)
                         return this.allMovies = data
                     })
                 }
