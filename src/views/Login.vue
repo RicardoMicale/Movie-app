@@ -2,7 +2,7 @@
     <div class="authorization">
         <div class="log-in">
             <h1>Log in</h1>
-            <form @submit.prevent="signUpGoogle()" class="google-sign-up">
+            <form @submit.prevent="logInGoogle()" class="google-sign-up">
                 <div>
                     <img src="../assets/Google.svg" alt="Google logo">
                     <input type="submit" value="Log in with Google">
@@ -42,8 +42,7 @@
 
 <script>
 import firebase from 'firebase';
-import * as fb from '../firebase'
-
+import * as fb from '../firebase';
 
 export default {
     name: 'Login',
@@ -68,8 +67,9 @@ export default {
             return user
         },
         //Create user
-        createNewUser() {
+        async createNewUser() {
             let id;
+
             const newUser = this.userConst(this.emailReg, this.username);
 
             firebase.auth().createUserWithEmailAndPassword(this.emailReg, this.passReg)
@@ -92,6 +92,8 @@ export default {
             await firebase.auth().signInWithPopup(provider)
                 .then(response => {
                     localStorage.setItem('user', response.user);
+                    const newUser = this.userConst(response.user.email, response.user.displayName);
+                    fb.createUser(response.user.uid, newUser)
                     this.$router.push('/profile');
                     console.log(response.user);
                     return response.user
@@ -101,6 +103,20 @@ export default {
                     localStorage.removeItem('user');
                 });
             
+            return;
+        },
+        //Login with google
+        async logInGoogle() {
+            const provider = new firebase.auth.GoogleAuthProvider();
+
+            await firebase.auth().signInWithPopup(provider)
+                .then(response => {
+                    localStorage.setItem('user', response.user);
+                    this.$router.push('/profile');
+                    return response.user
+                })
+                .catch(err => console.log(err));
+
             return;
         }
     }

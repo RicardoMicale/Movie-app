@@ -1,43 +1,15 @@
 <template>
-  <Navbar logged=logged currentUser="current.uid" />
+  <Navbar />
   <router-view></router-view>
 </template>
 
 <script>
 import Navbar from './components/Navbar';
-import firebase from 'firebase';
-import * as fb from './firebase';
 
 export default {
   name: 'App',
   components: {
     Navbar
-  },
-  data() {
-    return {
-      logged: false,
-      current: this.allUsers()
-    }
-  },
-  methods: {
-    allUsers() {
-      const user = firebase.auth().currentUser
-
-      if(user !== null) {
-        fb.getUser(user.uid)
-          .then(user => {
-            console.log(user)
-            this.logged = true
-            return this.current = user;
-          }).catch(error => {
-            console.log(error);
-          });
-      } else {
-        this.current = '';
-      }
-
-      return user
-    }
   }
 }
 </script>

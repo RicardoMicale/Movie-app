@@ -8,7 +8,7 @@
             <ul>
                 <li><router-link class="link" to="/">Home</router-link></li>
                 <li><router-link class="link" to="/search">Search</router-link></li>
-                <li><router-link class="link" to="/profile" >Profile</router-link></li>
+                <li><router-link class="link" to="/profile">Profile</router-link></li>
                 <li><router-link class="link" to="/login" v-if="!logged">Log in</router-link></li>
                 <li><button @click="logOut()" v-if="logged">Log out</button></li>
             </ul>
@@ -33,14 +33,14 @@ export default {
             firebase.auth().signOut().then(() => {
                 this.$router.push('/')
             })
-            this.logged = false
+            this.logged = this.userActive()
         },
         userActive() {
             const user = firebase.auth().currentUser
             let logged = false;
 
             if(user !== null) {
-                return logged = true
+                logged = true
             } 
 
             return logged
