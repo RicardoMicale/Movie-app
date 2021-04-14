@@ -2,14 +2,14 @@
     <div class="authorization">
         <div class="log-in">
             <h1>Log in</h1>
-            <form @submit.prevent="" class="google-sign-up">
+            <form @submit.prevent="signUpGoogle()" class="google-sign-up">
                 <div>
                     <img src="../assets/Google.svg" alt="Google logo">
                     <input type="submit" value="Log in with Google">
                 </div>
             </form>
             <h3>Or use your email</h3>
-            <form @submit.prevent="">
+            <form @submit.prevent="logIn()">
                 <label for="email">E-mail</label>
                 <input v-model="emailLogin" type="text" id="email" placeholder="example@mail.com" required>
                 <label for="password">Password</label>
@@ -20,7 +20,7 @@
         <div class="divider"></div>
         <div class="register">
             <h1>Register</h1>
-            <form @submit.prevent="" class="google-sign-up">
+            <form @submit.prevent="signUpGoogle()" class="google-sign-up">
                 <div>
                     <img src="../assets/Google.svg" alt="Google logo">
                     <input type="submit" value="Sign up with Google">
@@ -57,15 +57,51 @@ export default {
         }
     },
     methods: {
+        userConst(email, username) {
+            const user = {
+                email: email,
+                username: username,
+                favourites: [],
+                watched: []
+            }
+
+            return user
+        },
         //Create user
         createNewUser() {
+            let id;
+            const newUser = this.userConst(this.emailReg, this.username);
+
             firebase.auth().createUserWithEmailAndPassword(this.emailReg, this.passReg)
                 .then(user => {
-                    alert(`Acc for ${user.email}`)
-                    this.$router.push('/profile/' + user.id)
+                    alert(`Acc for ${user.user.uid}`);
+                    id = user.user.uid;
+                    fb.createUser(id, newUser);
+                    this.$router.push('/profile');
                 });
-
-            fb.createUser({email: this.emailReg, username: this.username})
+        },
+        //Log in
+        logIn() {
+            firebase.auth().signInWithEmailAndPassword(this.emailLogin, this.passwordLogin).then(() => {
+                this.$router.push('/profile');
+            })
+        },
+        //signUp google
+        async signUpGoogle() {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            await firebase.auth().signInWithPopup(provider)
+                .then(response => {
+                    localStorage.setItem('user', response.user);
+                    this.$router.push('/profile');
+                    console.log(response.user);
+                    return response.user
+                })
+                .catch(err => {
+                    console.log(err);
+                    localStorage.removeItem('user');
+                });
+            
+            return;
         }
     }
 

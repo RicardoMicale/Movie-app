@@ -8,9 +8,9 @@
             <ul>
                 <li><router-link class="link" to="/">Home</router-link></li>
                 <li><router-link class="link" to="/search">Search</router-link></li>
-                <li><router-link class="link" to="'/profile/' + currentUser">Profile</router-link></li>
-                <li><router-link class="link" to="/login" v-if="!isLoggedIn">Log in</router-link></li>
-                <li><button @click="logOut()" v-if="isLoggedIn">Log out</button></li>
+                <li><router-link class="link" to="/profile" >Profile</router-link></li>
+                <li><router-link class="link" to="/login" v-if="!logged">Log in</router-link></li>
+                <li><button @click="logOut()" v-if="logged">Log out</button></li>
             </ul>
         </nav>
     </header>
@@ -22,19 +22,29 @@ import firebase from 'firebase'
 export default {
     name: 'Navbar',
     data() {
+        const logged = this.userActive()
+
         return {
-            isLoggedIn: false,
+            logged
         }
     },
     methods: {
         logOut() {
             firebase.auth().signOut().then(() => {
                 this.$router.push('/')
-            });
-            this.isLoggedIn = false;
+            })
+            this.logged = false
         },
-        logIn() {
-            this.isLoggedIn = true
+        userActive() {
+            const user = firebase.auth().currentUser
+            let logged = false;
+
+            if(user !== null) {
+                return logged = true
+            } 
+
+            return logged
+            
         }
     }
 }
