@@ -9,23 +9,24 @@
                 <li><router-link class="link" to="/">Home</router-link></li>
                 <li><router-link class="link" to="/search">Search</router-link></li>
                 <li><router-link class="link" to="/profile">Profile</router-link></li>
-                <li><router-link class="link" to="/login" v-if="!logged">Log in</router-link></li>
-                <li><button @click="logOut()" v-if="logged">Log out</button></li>
+                <li><router-link class="link" to="/login" v-if="!user">Log in</router-link></li>
+                <li><button @click="logOut()" v-if="user">Log out</button></li>
             </ul>
         </nav>
     </header>
 </template>
 
 <script>
-import firebase from 'firebase'
+import firebase from 'firebase';
 
 export default {
     name: 'Navbar',
+    created() {
+        this.user = firebase.auth().currentUser || false
+    },
     data() {
-        const logged = this.userActive()
-
         return {
-            logged
+            user: Boolean
         }
     },
     methods: {
@@ -33,18 +34,7 @@ export default {
             firebase.auth().signOut().then(() => {
                 this.$router.push('/')
             })
-            this.logged = this.userActive()
-        },
-        userActive() {
-            const user = firebase.auth().currentUser
-            let logged = false;
-
-            if(user !== null) {
-                logged = true
-            } 
-
-            return logged
-            
+            this.user = firebase.auth().currentUser || false
         }
     }
 }

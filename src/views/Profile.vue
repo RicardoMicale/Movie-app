@@ -27,20 +27,12 @@ export default {
     data() {
 
         return {
-            cUser: {},
-            userfavs: [],
-            userWatched: []
+            cUser: {}
         }
     },
     created() {
 
-        const user = firebase.auth().currentUser;
         let cUser;
-
-        if(user === null) {
-            this.$router.push('/login')
-            return null
-        }
         
         firebase.auth().onAuthStateChanged(async user => {
             if(user) {
@@ -48,15 +40,15 @@ export default {
                     this.cUser = response.data();
 
                     }).catch(err => console.log(err))
+            } else {
+                this.$router.push('/login');
             }
         })
 
         
 
         return {
-            cUser,
-            // favMovies,
-            // watchedMovies
+            cUser
         }
     }
 }

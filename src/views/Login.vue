@@ -46,7 +46,11 @@ import * as fb from '../firebase';
 
 export default {
     name: 'Login',
-    data() {
+     data() {
+        if(firebase.auth().currentUser !== null) {
+            this.$router.push('/profile')
+        }
+
         return {
             emailReg: '',
             passReg: '',
