@@ -36,8 +36,8 @@ export default {
             .then(response => {
               this.cUser = response.data();
               //fetch movies from watched list
-              this.cUser.watched.forEach(fav => {
-                fetch(`https://api.themoviedb.org/3/movie/${fav}?api_key=${api}&language=en-US`)
+              this.cUser.watched.forEach(async wa => {
+                await fetch(`https://api.themoviedb.org/3/movie/${wa}?api_key=${api}&language=en-US`)
                   .then(response => {
                     this.movies.push(response);
                   })

@@ -24,8 +24,8 @@
       </div>
     </div>
     <div class="buttons">
-      <button class="btn btn-watch">Mark as Watched</button>
-      <button class="btn btn-fav">Add to Favourites</button>
+      <button class="btn btn-watch" @click="addWatch()">Mark as Watched</button>
+      <button class="btn btn-fav" @click="addFav()">Add to Favourites</button>
     </div>
   </div>
 </template>
@@ -34,6 +34,8 @@
 import { useRoute } from 'vue-router';
 import axios from 'axios';
 import api from '../api';
+import firebase from 'firebase';
+import * as fb from '../firebase';
 // import { ref, onBeforeMount } from 'vue';
 
 export default {
@@ -81,6 +83,32 @@ export default {
           }).catch(error => console.log(error));
 
           return cast
+      },
+      //add favourite
+      async addFav() {
+        const user = firebase.auth().currentUser;
+        let cUser;
+
+        await fb.getUser(user.uid)
+          .then(response => {
+            cUser = response.data()
+            cUser.favourites.push(this.movie.id);
+          })
+
+        fb.updateUser(user.uid, cUser);
+      },
+      //add watch
+      async addWatch() {
+        const user = firebase.auth().currentUser;
+        let cUser;
+
+        await fb.getUser(user.uid)
+          .then(response => {
+            cUser = response.data()
+            cUser.watched.push(this.movie.id);
+          })
+
+        fb.updateUser(user.uid, cUser);
       }
     }
 }
