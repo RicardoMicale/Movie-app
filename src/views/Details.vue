@@ -92,7 +92,7 @@ export default {
         await fb.getUser(user.uid)
           .then(response => {
             cUser = response.data()
-            cUser.favourites.push(this.movie.id);
+            cUser.favourites.push(this.movie);
           })
 
         fb.updateUser(user.uid, cUser);
@@ -105,7 +105,7 @@ export default {
         await fb.getUser(user.uid)
           .then(response => {
             cUser = response.data()
-            cUser.watched.push(this.movie.id);
+            cUser.watched.push(this.movie);
           })
 
         fb.updateUser(user.uid, cUser);
