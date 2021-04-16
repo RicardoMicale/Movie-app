@@ -7,8 +7,10 @@
         <div class="user-info">
             <span>{{cUser.email}}</span>
             <div class="buttons">
-                <button class="edit">Edit Profile</button>
-                <button class="pass">Change Password</button>
+                <button class="edit" @click="showEdit()">Edit Profile</button>
+                <Edit v-if="edit" />
+                <button class="pass" @click="showPass()">Change Password</button>
+                <Password v-if="editPass" />
             </div>
             <div class="list-links">
                 <router-link :to="'/favourites/' + cUser.username" class="links">See all favourites <i class="fas fa-arrow-right"></i></router-link>
@@ -21,13 +23,22 @@
 <script>
 import firebase from 'firebase';
 import * as fb from '../firebase';
+import Edit from '../components/Edit';
+import Password from '../components/Password';
 
 export default {
     name: 'Profile',
+    components: {
+        Edit,
+        Password
+    },
     data() {
 
         return {
-            cUser: {}
+            cUser: {},
+            edit: false,
+            editPass: false,
+            user: firebase.auth().currentUser
         }
     },
     created() {
@@ -49,6 +60,14 @@ export default {
 
         return {
             cUser
+        }
+    },
+    methods: {
+        showEdit() {
+            this.edit = !this.edit
+        },
+        showPass() {
+            this.editPass = !this.editPass
         }
     }
 }
@@ -101,7 +120,6 @@ i {
     width: 100%;
 }
 
-
 button {
     width: 60%;
     margin: 1rem 0;
@@ -130,6 +148,7 @@ button {
     justify-content: center;
     align-items: center;
     width: 70%;
+    position: relative;
 }
 
 .user-info span {
