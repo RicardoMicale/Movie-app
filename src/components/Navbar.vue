@@ -9,8 +9,8 @@
                 <li><router-link class="link" to="/">Home</router-link></li>
                 <li><router-link class="link" to="/search">Search</router-link></li>
                 <li><router-link class="link" to="/profile">Profile</router-link></li>
-                <li><router-link class="link" to="/login" v-if="!user">Log in</router-link></li>
-                <li><button @click="logOut()" v-if="user">Log out</button></li>
+                <li><router-link class="link" to="/login" v-show="hide">Log in</router-link></li>
+                <li><button @click="logOut()" class="logout-btn" v-show="!hide">Log out</button></li>
             </ul>
         </nav>
     </header>
@@ -21,12 +21,9 @@ import firebase from 'firebase';
 
 export default {
     name: 'Navbar',
-    created() {
-        this.user = firebase.auth().currentUser || false
-    },
     data() {
         return {
-            user: Boolean
+            hide: Boolean
         }
     },
     methods: {
@@ -34,8 +31,20 @@ export default {
             firebase.auth().signOut().then(() => {
                 this.$router.push('/')
             })
-            this.user = firebase.auth().currentUser || false
+            this.hide = !this.hide
+        },
+        isUserSignedIn() {
+            firebase.auth().onAuthStateChanged(user => {
+                if(user) {
+                    this.hide = false
+                } else {
+                    this.hide = true
+                }
+            })
         }
+    },
+    mounted() {
+        this.isUserSignedIn()
     }
 }
 </script>
@@ -117,5 +126,26 @@ li .router-link-active::before {
     width: 100%;
     background-color: var(--text);
 }
+
+.hide {
+    display: none;
+}
+
+.logout-btn {
+    padding: .3rem 1.2rem;
+    background-color: var(--text);
+    color: var(--primary-light);
+    border: none;
+    outline: none;
+    border-radius: 50000px;
+    cursor: pointer;
+    font-family: var(--main-font);
+    font-size: .9rem;
+}
+
+.logout-btn:hover {
+    color: var(--primary-dark);
+    background-color: var(--text-alt);
+} 
 
 </style>
