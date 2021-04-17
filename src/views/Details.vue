@@ -228,4 +228,28 @@ li {
   color: var(--bg);
 }
 
+@media screen and (max-width: 1024px) {
+  .info-container {
+    flex-direction: column;
+  }
+
+  .left span {
+    top: 1rem;
+  }
+
+  .right {
+    margin-left: 0;
+  }
+
+  .buttons {
+    flex-direction: column;
+    padding: 1rem 0;
+  }
+
+  .btn {
+    width: 90%;
+    margin-top: 1rem;
+  }
+}
+
 </style>

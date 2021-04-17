@@ -299,4 +299,27 @@ h5 {
     color: var(--bg-dDark);
     opacity: .5;
 }
+
+@media screen and (max-width: 1024px) {
+    .movie-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .movie-card {
+        width: 90%;
+    }
+
+    .movie-card:hover img {
+        border: none
+    }
+
+    h5 {
+        font-size: 1rem;
+    }
+
+    p {
+        font-size: 1.1rem;
+    }
+}
 </style>
