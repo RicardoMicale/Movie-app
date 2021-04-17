@@ -47,9 +47,21 @@ export default {
     height: 100%;
 }
 
+@media screen and (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+    }
+}
+
 .left {
     padding: 7vw 0 0 7vw;
     height: 100vh;
+}
+
+@media screen and (max-width: 1024px) {
+    .left {
+        padding-right: 7vw;
+    }
 }
 
 .tittle {
@@ -72,6 +84,7 @@ export default {
     margin-top: 4rem;
 }
 
+
 .button {
     display: flex;
     align-items: center;
@@ -81,6 +94,26 @@ export default {
     height: 2.2rem;
     border-radius: 500000px;
     margin-right: 3rem;
+}
+
+@media screen and (max-width: 1024px) {
+    .tittle {
+        width: 100%;
+        align-items: center;
+        padding-top: 2rem;
+    }
+
+    .buttons {
+        flex-direction: column;
+        justify-content: space-around;
+        height: 8rem;
+        width: 100%;
+    }
+
+    .button {
+        margin-right: 0;
+    }
+
 }
 
 .button-1 {
@@ -105,6 +138,22 @@ h1::after {
     content: ' just a click away';
     color: var(--text);
     font-size: 3rem;
+}
+
+@media screen and (max-width: 1024px) {
+    h1 {
+        font-size: 2.2rem;
+        text-align: center;
+        width: 100%;
+        line-height: 2.4rem;
+        margin-top: 1.4rem;
+        margin-bottom: .8rem;
+    }
+
+    h1::after {
+        font-size: 2rem;
+        
+    }
 }
 
 .underline {
@@ -134,10 +183,21 @@ h1::after {
     border-radius: 50000px;
 }
 
+
 p {
     font-family: var(--alt-font);
     color: var(--text);
     margin-top: 1.6rem;
+}
+
+@media screen and (max-width: 1024px) {
+    .underline {
+        margin-top: -.5rem
+    }
+
+    p {
+        text-align: center;
+    }
 }
 
 .right {
@@ -153,5 +213,10 @@ p {
     width: 30vw;
 }
 
+@media screen and (max-width:1024px) {
+    .right {
+        display: none;
+    }
+}
 
 </style>

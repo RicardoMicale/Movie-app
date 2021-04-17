@@ -5,7 +5,12 @@
             <h2>InfoMovies</h2>
         </router-link>
         <nav>
-            <ul>
+            <div class="burger" @click="openNav()">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+            <ul >
                 <li><router-link class="link" to="/">Home</router-link></li>
                 <li><router-link class="link" to="/search">Search</router-link></li>
                 <li><router-link class="link" to="/profile">Profile</router-link></li>
@@ -14,6 +19,13 @@
             </ul>
         </nav>
     </header>
+    <ul :class="{'burgerActive': isNavOpen}">
+        <li><router-link class="link" to="/">Home</router-link></li>
+        <li><router-link class="link" to="/search">Search</router-link></li>
+        <li><router-link class="link" to="/profile">Profile</router-link></li>
+        <li><router-link class="link" to="/login" v-show="hide">Log in</router-link></li>
+        <li><button @click="logOut()" class="logout-btn" v-show="!hide">Log out</button></li>
+    </ul>
 </template>
 
 <script>
@@ -23,7 +35,8 @@ export default {
     name: 'Navbar',
     data() {
         return {
-            hide: Boolean
+            hide: Boolean,
+            isNavOpen: false
         }
     },
     methods: {
@@ -41,6 +54,9 @@ export default {
                     this.hide = true
                 }
             })
+        },
+        openNav() {
+            this.isNavOpen = !this.isNavOpen;
         }
     },
     mounted() {
@@ -73,6 +89,10 @@ export default {
     color: var(--text);
 }
 
+.burger {
+    display: none;
+}
+
 h2 {
     font-family: var(--alt-font);
 }
@@ -81,6 +101,20 @@ img {
     width: 1.6rem;
     height: auto;
     margin-right: .4rem;
+}
+
+@media screen and (max-width: 1024px) {
+    .navbar {
+        width: 100vw;
+    }
+
+    .logo {
+        font-size: .8rem;
+    }
+
+    img {
+        width: 1.4rem;
+    }
 }
 
 ul {
@@ -147,5 +181,48 @@ li .router-link-active::before {
     color: var(--primary-dark);
     background-color: var(--text-alt);
 } 
+
+.burgerActive {
+    display: none;
+}
+
+@media screen and (max-width:1024px) {
+    ul {
+        display: none;
+    }
+
+    .burger {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        width: 1.8rem;
+        height: 1.8rem;
+        background-color: transparent;
+    }
+
+    .burger div {
+        width: 100%;
+        height: .3rem;
+        background-color: var(--text);
+        border-radius: 50000px;
+    }
+
+    .burgerActive {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        height: 12rem;
+        background-color: var(--primary-light);
+        padding: 1.3rem 0;
+        margin-top: -.2rem;
+    }
+
+    .burgerActive li {
+        margin-bottom: .8rem;
+    }
+
+}
 
 </style>
