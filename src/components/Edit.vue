@@ -110,4 +110,33 @@ input[type="submit"] {
     cursor: pointer;
 }
 
+@media screen and (max-width: 1024px) {
+    .all {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    h3 {
+        width: 100%;
+        text-align: center;
+    }
+
+    form {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    label {
+        width: 100%;
+    }
+
+    input[type="submit"], input[type="text"] {
+        width: 100%;
+        margin-top: .3rem;
+        margin-bottom: .3rem;
+        border-radius: 50000px;
+        height: 2rem;
+    }
+}
+
 </style>

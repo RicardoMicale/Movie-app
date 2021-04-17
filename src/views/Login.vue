@@ -205,6 +205,20 @@ input[type="submit"] {
     height: 100vh;
 }
 
+@media screen and (max-width: 1024px) {
+    .divider {
+        display: none;
+    }
+
+    .authorization {
+        flex-direction: column;
+    }
+
+    input[type="password"], input[type="text"] {
+        width: 90%;
+    }
+}
+
 .log-in, .register {
     height: 100%;
 }

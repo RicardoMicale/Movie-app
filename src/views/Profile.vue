@@ -106,6 +106,17 @@ i {
     padding: 1rem 7vw;
 }
 
+@media screen and (max-width: 1024px) {
+    .all {
+        flex-direction: column;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 2rem;
+    }
+}
+
 .user-info {
     display: inherit;
     flex-direction: column;
@@ -130,6 +141,12 @@ button {
     font-family: var(--alt-font);
     font-weight: 600;
     cursor: pointer;
+}
+
+@media screen and (max-width: 1024px) {
+    button {
+        width: 90%;
+    }
 }
 
 .edit {

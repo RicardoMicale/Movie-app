@@ -122,4 +122,29 @@ input[type="submit"] {
     margin-top: 1rem;
 }
 
+@media screen and (max-width: 1024px) {
+    .all {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    form {
+        flex-direction: column;
+    }
+
+    .firstPass, .secPass {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    input[type="password"],input[type="submit"], label {
+        width: 100%;
+    }
+
+    input[type="password"] {
+        margin-top: .5rem;
+    }
+}
+
 </style>
