@@ -10,7 +10,7 @@
                 <div class="line2"></div>
                 <div class="line3"></div>
             </div>
-            <ul >
+            <ul>
                 <li><router-link class="link" to="/">Home</router-link></li>
                 <li><router-link class="link" to="/search">Search</router-link></li>
                 <li><router-link class="link" to="/profile">Profile</router-link></li>
@@ -19,7 +19,7 @@
             </ul>
         </nav>
     </header>
-    <ul :class="{'burgerActive': isNavOpen}">
+    <ul :class="{'burgerActive': isNavOpen}" class="openNav">
         <li><router-link class="link" to="/">Home</router-link></li>
         <li><router-link class="link" to="/search">Search</router-link></li>
         <li><router-link class="link" to="/profile">Profile</router-link></li>
@@ -182,7 +182,7 @@ li .router-link-active::before {
     background-color: var(--text-alt);
 } 
 
-.burgerActive {
+.openNav {
     display: none;
 }
 

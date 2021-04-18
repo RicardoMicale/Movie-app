@@ -145,4 +145,26 @@ h5 {
 .movie-link img {
   width: 100%;
 }
+
+@media screen and (max-width: 1024px) {
+  .all-movies {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .movie-card {
+    width: 90%;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  h5 {
+    font-size: 1.2rem;
+  }
+
+}
+
 </style>
